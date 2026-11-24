@@ -236,7 +236,7 @@ static void installRequest(RACSignal *readRequestSignal, NSString *applicationId
 // TODO: https://github.com/electron/electron/issues/43168
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-							if (![NSWorkspace.sharedWorkspace launchApplicationAtURL:bundleURL options:NSWorkspaceLaunchDefault configuration:@{} error:&error]) {
+							if (![NSWorkspace.sharedWorkspace launchApplicationAtURL:bundleURL options:(NSWorkspaceLaunchDefault | NSWorkspaceLaunchWithoutActivation) configuration:@{} error:&error]) {
 								NSLog(@"Could not launch application at %@: %@", bundleURL, error);
 								return;
 							}
@@ -299,7 +299,7 @@ int main(int argc, const char * argv[]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 			NSError *error;
-			if (![NSWorkspace.sharedWorkspace launchApplicationAtURL:shipItStateURL options:NSWorkspaceLaunchDefault configuration:@{} error:&error]) {
+			if (![NSWorkspace.sharedWorkspace launchApplicationAtURL:shipItStateURL options:(NSWorkspaceLaunchDefault | NSWorkspaceLaunchWithoutActivation) configuration:@{} error:&error]) {
 				NSLog(@"Could not launch application at %@: %@", shipItStateURL, error);
 			} else {
 				NSLog(@"Successfully launched application at %@", shipItStateURL);
